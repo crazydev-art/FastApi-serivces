@@ -1,0 +1,36 @@
+# Vérification de l'API
+curl -X GET http://127.0.0.1:8000/verify
+
+# Générer un quizz
+curl -X 'POST' \
+  'http://localhost:8000/generate_quiz' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Basic Ym9iOmJ1aWxkZXI=' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "test_type": "Test de validation",
+  "categories": [
+    "Systèmes distribués"
+  ],
+  "number_of_questions": 5
+}'
+
+# Ajouter une question
+curl -X 'POST' \
+  'http://localhost:8000/create_question' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Basic YWRtaW46NGRtMU4=' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "admin_username": "admin",
+  "admin_password": "4dm1N",
+  "question": "Quelle est la capitale de la France ?",
+  "subject": "geography",
+  "correct": ["Paris"],
+  "use": "multiple_choice",
+  "responseA": "Londres",
+  "responseB": "Paris",
+  "responseC": "Berlin",
+  "responseD": "Madrid"
+}
+'
